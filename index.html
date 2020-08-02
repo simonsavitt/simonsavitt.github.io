@@ -1,71 +1,61 @@
 <!DOCTYPE html>
 <html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/startup.js"></script>
-<head>
-	<meta content="Example page for head section." name="description">
-	<title>Example page</title>
-	<style type="text/css">
-	<!--
-	.tab { margin-left: 40px; }
-	-->
-	</style>
-</head>
-<body>
+  <head>
+    <meta charset='utf-8'>
+    <meta content="Example table" name="description">
+    <title>OCD Advocates Table Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900,400italic|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script type='text/javascript' src='http://jlord.us/sheetsee.js/js/sheetsee.js'></script>
+    <link rel='stylesheet' type='text/css' href='http://jlord.us/sheetsee.js/assets/style.css'> 
+  </head>
+  <style>
+    #Pagination {border-top: 4px solid #CCF4FF; margin: 10px 0px; padding-top: 10px; display: inline-block;}
+    #Pagination a {cursor: pointer;}
+    .no-pag {color: #acacac; border: none;}
+    .no-pag:hover {color: #acacac;}
+    input {border: none; border-bottom: 1px solid #333;margin: 10px 0px; width: 200px; font-size: 16px; padding-bottom: 6px;}
+    .tHeader {padding: 8px; cursor: pointer; text-align: left;}
+  </style>
+  <body>
+    <div class="container">
+      <h1>OCD Advocates Table Demo</h1>
+      <p><em><a href="https://docs.google.com/a/github.com/spreadsheet/ccc?key=1W7eqVfibwgmfLua50OvfTeC4zHQTrmD7fQ3oGDMQ5_0&usp=drive_web#gid=0" target="_blank">spreadsheet</a></em><p>
+      <input id="fullTableFilter" type="text" placeholder="filter by.."></input>
+      <a class="clear">Clear</a>
+      <div id="fullTable">Loading...</div>
 
-<p>
-<pre>Random Equations</pre>
-</p>
+      <footer>
+        <h4><a class="home-link" href="../index.html">Home</a></h4>
+      </footer>
+    </div>
 
+    <script id="fullTable_template" type="text/html">
+      <table>
+        <tr><th class="tHeader">City</th><th class="tHeader">Place Name</th><th class="tHeader">Year</th><th class="tHeader">Image</th></tr>
+          {{#rows}}
+            <tr><td>{{City}}</td><td>{{PlaceName}}</td><td>{{Year}}</td><td>{{Image}}</td></tr>
+          {{/rows}}
+      </table>
+    </script>
 
-<pre style="line-height: 1.25; white-space: pre;">
-        \                           /
-         \                         /
-          \                       /
-           ]                     [    ,'|
-           ]                     [   /  |
-           ]___               ___[ ,'   |
-           ]  ]\             /[  [ |:   |
-           ]  ] \           / [  [ |:   |
-           ]  ]  ]         [  [  [ |:   |
-           ]  ]  ]__     __[  [  [ |:   |
-           ]  ]  ] ]\ _ /[ [  [  [ |:   |
-           ]  ]  ] ] (#) [ [  [  [ :===='
-           ]  ]  ]_].nHn.[_[  [  [
-           ]  ]  ]  HHHHH. [  [  [
-           ]  ] /   `HH("N  \ [  [
-           ]__]/     HHH  "  \[__[
-           ]         NNN         [
-           ]         N/"         [
-           ]         N H         [
-          /          N            \
-         /           q,            \
-        /                           \
-     "Maze Found" by http://postgrest.org
-</pre>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var URL = "1W7eqVfibwgmfLua50OvfTeC4zHQTrmD7fQ3oGDMQ5_0"
+        Tabletop.init({key: URL, callback: showInfo, simpleSheet: true})
+      })
 
-
-<p>
-`F=ma`
-</p>
-<p class="tab">
-F`\equiv`Force[`N`]<br>m`\equiv`Mass[`kg`]<br>a`\equiv`acceleration[`m//s^2`]
-</p>
-
-<p>
-`V=IR`
-</p>
-
-<p class="tab">
-V`\equiv`Voltage[`V`]<br>I`\equiv`Current[`	A`]<br>R`\equiv`Resistance[`\Omega`]
-</p>
-
-<p>
-`V - E + F = 2`
-</p>
-
-<p>
-`E=mc^2`
-</p>
-
-</body>
+      function showInfo (data) {
+        var tableOptions = {
+          "data": data,
+          "pagination": 10,
+          "tableDiv": "#fullTable",
+          "filterDiv": "#fullTableFilter"
+        }
+        Sheetsee.makeTable(tableOptions)
+        Sheetsee.initiateTableFilter(tableOptions)
+      }
+    </script>
+  </body>
 </html>
