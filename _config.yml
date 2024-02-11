@@ -1,7 +1,5 @@
-remote_theme: pages-themes/slate@v0.2.0
-
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
-
 title: Simon Savitt's Homepage
-description: My portfolio
+author: Simon Savitt
+description: My portfolio website.
+theme: minima
+#plugins:
